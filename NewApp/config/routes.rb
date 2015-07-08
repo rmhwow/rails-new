@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :advertisements
+  # ,only: [:show]
 
 
   # get 'advertisements#show'
