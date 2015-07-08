@@ -14,11 +14,18 @@ require 'faker'
      body:   Faker::Lorem.paragraph
    )
  end
- 
- my_post = Post.create(
+
+my_post = Post.create(
+  title: "Awesome Post",
+  body: "Hey this is my post about the chicken farm"
+  ) 
+
+ unless my_post
+ Post.create(
   title: "Awesome Post",
   body: "Hey this is my post about the chicken farm"
   )
+end
 
  posts = Post.all
  
@@ -34,7 +41,13 @@ my_comment = Comment.create(
   post: my_post,
   body: "this is awesome"
   )
- 
+ unless my_comment
+  Comment.create(
+  post: my_post,
+  body: "this is awesome"
+  )
+end
+
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
