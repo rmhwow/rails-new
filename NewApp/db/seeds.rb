@@ -15,17 +15,17 @@ require 'faker'
    )
  end
 
-my_post = Post.create(
+my_post = Post.where(
   title: "Awesome Post",
   body: "Hey this is my post about the chicken farm"
-  ) 
+  ).first 
 
  unless my_post
- Post.create(
+ my_post = Post.create(
   title: "Awesome Post",
   body: "Hey this is my post about the chicken farm"
   )
-end
+ end
 
  posts = Post.all
  
@@ -37,17 +37,25 @@ end
    )
  end
 
-my_comment = Comment.create(
+my_comment = Comment.where(
   post: my_post,
   body: "this is awesome"
-  )
+  ).first
+
  unless my_comment
   Comment.create(
   post: my_post,
   body: "this is awesome"
   )
 end
-
+15.times do
+   Advertisement.create!(
+     title:  Faker::Lorem.words(4).join(" "),
+     copy:   Faker::Lorem.paragraph,
+     price:  Faker::Number.positive
+   )
+ end
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+ puts "#{Advertisement.count} advertisements created"
