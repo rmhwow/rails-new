@@ -55,7 +55,17 @@ end
      price:  Faker::Number.positive
    )
  end
+
+ 10.times do 
+  Question.create!(
+    title: Faker::Lorem.words(4).join(" "),
+    body: Faker::Lorem.paragraph,
+    resolved: false
+    )
+end
+
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
  puts "#{Advertisement.count} advertisements created"
+  puts "#{Question.count} questions created"
