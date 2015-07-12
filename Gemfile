@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'faker'
 gem 'devise'
 gem 'figaro', '1.0'
+gem 'pundit'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
