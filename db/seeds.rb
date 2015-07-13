@@ -17,14 +17,25 @@ require 'faker'
    user.save!
  end
  
- admin = User.new(
+ admin = User.where(
    name:     'Admin User',
    email:    'admin@example.com',
    password: 'helloworld',
    role:     'admin'
  )
- admin.skip_confirmation!
- admin.save!
+
+ unless admin
+   admin = User.new(
+    name: 'Admin User',
+    email: 'admin@example.com',
+    password: 'helloworld',
+    role: 'admin'
+    )
+   admin.skip_confirmation!
+  admin.save!
+    end
+ 
+
  
  # Create a moderator
  moderator = User.new(
@@ -54,9 +65,18 @@ require 'faker'
  
  # The `save` method then saves this User to the database.
  # Create Posts
+  15.times do
+   Topic.create!(
+     name:         Faker::Lorem.sentence,
+     description:  Faker::Lorem.paragraph
+   )
+ end
+ topics = Topic.all
+
  50.times do
    Post.create!(
     user: users.sample,
+    topic: topics.sample,
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
    )
@@ -84,6 +104,8 @@ require 'faker'
      body: Faker::Lorem.paragraph
    )
  end
+
+ 
 
 # my_comment = Comment.where(
 #   post: my_post,
