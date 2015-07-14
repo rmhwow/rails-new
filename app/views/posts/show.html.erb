@@ -1,6 +1,10 @@
 <h1><%= @post.title %></h1>
 <h2> <%= @summary.body if @summary %></h2>
-<%= link_to_if !@summary, "New Summary",new_post_summary_path(@post,Summary.new)%>
+  <% if @summary.nil? %>
+<%= link_to "New Summary",new_post_summary_path(@post,Summary.new)%>
+<%else %>
+<%= link_to "Edit Summary", edit_post_summary_path(@post,@summary), class: 'btn btn-success btn-xs' %>
+<%end %>
 <div class="row">
   <div class="col-md-8">
     <p><%= @post.body %></p>

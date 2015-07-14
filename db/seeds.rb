@@ -17,20 +17,20 @@ require 'faker'
    user.save!
  end
  
- admin = User.where(
-   name:     'Admin User',
-   email:    'admin@example.com',
-   password: 'helloworld',
-   role:     'admin'
- ) 
+ # admin = User.where(
+ #   name:     'Admin User',
+ #   email:    'admin@example.com',
+ #   password: 'helloworld',
+ #   role:     'admin'
+ # ).first 
  
  # unless admin
-  #  admin = User.create!(
-  #   name: 'Admin User',
-  #   email: 'admin@example.com',
-  #   password: 'helloworld',
-  #   role: 'admin'
-  #   )
+   admin = User.new(
+    name: 'Admin User',
+    email: 'admin@example.com',
+    password: 'helloworld',
+    role: 'admin'
+    )
    admin.skip_confirmation!
   admin.save!
   # end

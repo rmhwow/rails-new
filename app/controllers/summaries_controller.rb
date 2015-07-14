@@ -1,8 +1,5 @@
 class SummariesController < ApplicationController
-  def index
-    @summaries = Summary.all
-    authorize @post
-  end
+
 
   def new
     @post = Post.find(params[:post_id])
@@ -11,15 +8,14 @@ class SummariesController < ApplicationController
     authorize @post
   end
     def create
-    # @topic = Topic.find(params[:topic_id])
-
-    @summary = Summary.new(params.require(:summary).permit(:title, :body))
-    @summary.post = @post
-    @post.user = current_user
+    # @topic = Topic.find(params[:topic_id]
+    @post = Post.find(params[:post_id]) # make sure your view is sending in a post object.
+    @summary = Summary.new(params.require(:summary).permit(:title, :body)) 
+    @summary.post = @post # and if you made the change as above, this line would not be necessary.
     authorize @post
     if @summary.save
       flash[:notice] = "Post was saved."
-      redirect_to [@post, @summary]
+      redirect_to [@post, @summary] # at this point, @post and @summary should have objects of the respective class and you should be redirected 
     else
       flash[:error] = "There was an error saving the post. Please try again."
       render :new
