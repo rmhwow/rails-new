@@ -1,5 +1,6 @@
 <h1><%= @post.title %></h1>
-
+<h2> <%= @summary.body if @summary %></h2>
+<%= link_to_if !@summary, "New Summary",new_post_summary_path(@post,Summary.new)%>
 <div class="row">
   <div class="col-md-8">
     <p><%= @post.body %></p>

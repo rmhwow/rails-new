@@ -1,0 +1,10 @@
+<h1>All Sumarriess</h1>
+<% @summaries.each do |sum| %>
+ <div class="media">
+     <div class="media-body">
+       <h4 class="media-heading">
+         <%= link_to sum.title, sum %>
+       </h4>
+     </div>
+   </div>
+<% end %>

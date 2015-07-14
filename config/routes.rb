@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
  
 
+  
+
   devise_for :users
  resources :questions
  # resources :topics
 
   resources :advertisements
   # ,only: [:show]
-
+  resources :posts do
+  resources :summaries
+end
 
   # get 'advertisements#show'
 

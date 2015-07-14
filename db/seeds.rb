@@ -22,19 +22,19 @@ require 'faker'
    email:    'admin@example.com',
    password: 'helloworld',
    role:     'admin'
- )
-
- unless admin
-   admin = User.new(
-    name: 'Admin User',
-    email: 'admin@example.com',
-    password: 'helloworld',
-    role: 'admin'
-    )
+ ) 
+ 
+ # unless admin
+  #  admin = User.create!(
+  #   name: 'Admin User',
+  #   email: 'admin@example.com',
+  #   password: 'helloworld',
+  #   role: 'admin'
+  #   )
    admin.skip_confirmation!
   admin.save!
-    end
- 
+  # end
+
 
  
  # Create a moderator
