@@ -1,4 +1,4 @@
-<h1><%= markdown_to_html @post.title %></h1>
+<h1><%= @post.markdown_title %></h1>
 <h2> <%= @summary.body if @summary %></h2>
   <% if @summary.nil? %>
 <%= link_to "New Summary",new_post_summary_path(@post,Summary.new)%>
@@ -7,7 +7,8 @@
 <%end %>
 <div class="row">
   <div class="col-md-8">
-    <p><%= markdown_to_html @post.body %></p>  </div>
+    <p><%= @post.markdown_body %></p>
+      </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
