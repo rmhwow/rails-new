@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+ devise_for :users
  resources :questions
  resources :users, only: [:update]
  # resources :topics
@@ -20,7 +20,6 @@ end
   get 'about' => 'welcome#about'
 
   root to: 'welcome#index'
-
 
 
 
