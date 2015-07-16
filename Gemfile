@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
- gem 'fog'
- gem 'carrierwave'
- gem 'mini_magick'
+
+gem 'will_paginate', '~> 3.0.5'
+gem 'fog'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'redcarpet'
 gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
