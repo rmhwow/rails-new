@@ -17,6 +17,7 @@
      </small>
      
     <p><%= @post.markdown_body %></p>
+    <h4><%= render partial: 'comments/comment', locals: { topic: @topic, post: @post, comment: @comments }  if @comments%> </h4> 
       </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>

@@ -9,13 +9,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
     @summary = @post.summary
+     @comments = @post.comments
+    @comment = Comment.new
     authorize @post
+    # render "comment"
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
     @post.topic = @topic
+    @comment = @post.comment
+
     authorize @post
   end
   def create
@@ -23,6 +28,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.topic = @topic   
     @post.user = current_user
+    @comment = @post.comment
+
     authorize @post
     if @post.save
       flash[:notice] = "Post was saved."

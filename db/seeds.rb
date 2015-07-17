@@ -65,7 +65,7 @@ require 'faker'
  
  # The `save` method then saves this User to the database.
  # Create Posts
-  1000.times do
+  100.times do
    Topic.create!(
      name:         Faker::Lorem.sentence,
      description:  Faker::Lorem.paragraph
@@ -97,9 +97,9 @@ require 'faker'
  posts = Post.all
  
  # Create Comments
- 100.times do
+ 1000.times do
    Comment.create!(
-    # user: users.sample,
+    user: users.sample,
      post: posts.sample,
      body: Faker::Lorem.paragraph
    )

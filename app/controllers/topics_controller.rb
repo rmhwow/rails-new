@@ -14,6 +14,8 @@
      @topic = Topic.find(params[:id])
      @posts = @topic.posts.paginate(page: params[:page], per_page: 50)
      authorize @topic
+     # @comments = @post.comments 
+     @comment = Comment.new
    end
 
    def edit
