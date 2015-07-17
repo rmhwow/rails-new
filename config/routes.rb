@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :advertisements
   # ,only: [:show]
-  resources :posts do
-  resources :summaries
+  resources :posts, only: [:index] do
+  resources :summaries, except: [:index]
 end
 
   # resources :posts do
@@ -17,7 +17,7 @@ end
   # resources :posts
     resources :topics do
      resources :posts, except: [:index] do 
-       resources :comments, only: [:create, :show]
+       resources :comments, only: [:create, :destroy]
       end
    end
    
