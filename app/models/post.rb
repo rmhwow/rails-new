@@ -8,12 +8,24 @@ class Post < ActiveRecord::Base
    mount_uploader :image, ImageUploader
    validates :title, length: { minimum: 5 }, presence: true
    validates :body, length: { minimum: 20 }, presence: true
-   validates :topic, presence: true
-   validates :user, presence: true
+   # validates :topic, presence: true
+   # validates :user, presence: true
 
   default_scope {order('created_at DESC')}
   # scope :ordered_by_title, -> {order(title: :asc)}
   # scope :ordered_by_reverse_created_at, -> {order(created_at: :desc) } 
+  def up_votes
+     votes.where(value: 1).count
+  end
+
+  def down_votes
+    votes.where(value: -1).count
+  end
+
+  def points
+    votes.sum(:value).to_i
+  end
+
   def markdown_title 
     render_as_markdown(self.title)
   end
