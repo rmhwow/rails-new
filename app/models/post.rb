@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   has_one :summary
+  
+  after_create :create_vote
    
    mount_uploader :image, ImageUploader
    validates :title, length: { minimum: 5 }, presence: true
@@ -48,5 +50,8 @@ class Post < ActiveRecord::Base
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render markdown).html_safe
+  end
+    def create_vote
+    user.votes.create(value: 1, post: self)
   end
 end
