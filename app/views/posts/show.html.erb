@@ -23,7 +23,7 @@
      <%= render partial: 'comments/comment', collection: @comments %>
     <% if policy(@comment).create? %> 
     <h4><%= render partial: 'comments/form', locals: {  post: @post } %></h4> 
-
+    
      <%end %> 
       </div>
   <div class="col-md-4">
