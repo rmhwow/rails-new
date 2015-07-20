@@ -2,7 +2,6 @@
  
  describe VotesController do
   include  Devise::TestHelpers 
-
    include TestFactories
  
    describe '#up_vote' do

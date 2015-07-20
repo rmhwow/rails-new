@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
   belongs_to :user
   belongs_to :topic
   has_one :summary
@@ -14,7 +16,7 @@ class Post < ActiveRecord::Base
   default_scope { order('rank DESC') }
   # scope :ordered_by_title, -> {order(title: :asc)}
   # scope :ordered_by_reverse_created_at, -> {order(created_at: :desc) } 
-  
+  # 
 
   def up_votes
      votes.where(value: 1).count
@@ -46,6 +48,14 @@ class Post < ActiveRecord::Base
   def create_vote
     user.votes.create(value: 1, post: self)
   end
+
+   def save_with_initial_vote
+      ActiveRecord::Base.transaction do 
+        self.save
+         self.create_vote
+      end
+    end
+
   private
    def render_as_markdown(markdown)
     renderer = Redcarpet::Render::HTML.new
