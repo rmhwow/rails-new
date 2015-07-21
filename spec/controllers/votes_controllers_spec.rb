@@ -1,8 +1,8 @@
  require 'rails_helper'
- 
- describe VotesController do
   include  Devise::TestHelpers 
-   include TestFactories
+  include TestFactories
+ describe VotesController do
+ 
  
    describe '#up_vote' do
      it "adds an up-vote to the post" do

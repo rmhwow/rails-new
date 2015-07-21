@@ -1,8 +1,8 @@
  require 'rails_helper'
- 
+    include TestFactories
+
  describe Comment do
  
-   include TestFactories
  
    describe "after_create" do
  

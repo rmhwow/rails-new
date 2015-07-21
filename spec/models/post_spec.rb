@@ -1,8 +1,8 @@
 require 'rails_helper'
- 
+ include TestFactories
+   include Devise::TestHelpers
  describe Post do
-   include Devise::TestHelpers 
-   include TestFactories
+    
    describe "vote methods" do
  
      before do

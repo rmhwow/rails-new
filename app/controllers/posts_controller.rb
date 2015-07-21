@@ -19,16 +19,13 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
     @post.topic = @topic
-    @comment = @post.comment
 
     authorize @post
   end
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(post_params)
-    @post.topic = @topic   
+    @post = @topic.posts.new(post_params)
     @post.user = current_user
-    @comment = @post.comment
 
     authorize @post
     if @post.save_with_initial_vote
