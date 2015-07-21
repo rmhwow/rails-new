@@ -12,25 +12,23 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @comment = Comment.new
     authorize @post
+    authorize @topic
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
     @post.topic = @topic
-    @comment = @post.comment
 
     authorize @post
   end
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(post_params)
-    @post.topic = @topic   
+    @post = @topic.posts.new(post_params)
     @post.user = current_user
-    @comment = @post.comment
 
     authorize @post
-    if @post.save
+    if @post.save_with_initial_vote
       flash[:notice] = "Post was saved."
       redirect_to [@topic,@post]
     else
@@ -39,9 +37,9 @@ class PostsController < ApplicationController
     end
   end
 
-     def edit
-    @topic = Topic.find(params[:topic_id])
-     @post = Post.find(params[:id])
+    def edit
+      @topic = Topic.find(params[:topic_id])
+      @post = Post.find(params[:id])
      authorize @post
    end
 

@@ -73,14 +73,17 @@ require 'faker'
  end
  topics = Topic.all
 
- 500.times do
-   Post.create!(
-    user: users.sample,
-    topic: topics.sample,
+ 50.times do
+   post = Post.create!(
+     user:   users.sample,
+     topic:  topics.sample,
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
    )
+    post.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
+   post.create_vote
  end
+ posts = Post.all
 
 # my_post = Post.where(
 #   title: "Awesome Post",
@@ -94,7 +97,6 @@ require 'faker'
 #   )
 #  end
 
- posts = Post.all
  
  # Create Comments
  1000.times do
