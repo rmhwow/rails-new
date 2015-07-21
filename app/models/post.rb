@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
    validates :user, presence: true
 
   default_scope { order('rank DESC') }
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
+
   # scope :ordered_by_title, -> {order(title: :asc)}
   # scope :ordered_by_reverse_created_at, -> {order(created_at: :desc) } 
   # 
