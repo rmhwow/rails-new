@@ -12,9 +12,8 @@
 
    def show
      @topic = Topic.find(params[:id])
-     @posts = @topic.posts.paginate(page: params[:page], per_page: 50)
      authorize @topic
-     # @comments = @post.comments 
+     @posts = @topic.posts.includes(:user).includes(:comments).paginate(page: params[:page], per_page: 10)    
      @comment = Comment.new
    end
 
