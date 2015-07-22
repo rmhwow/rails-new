@@ -38,8 +38,9 @@ gem 'thin', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'rspec-rails', '~> 3.0'
-   gem 'capybara'
+  gem 'capybara'
   gem 'byebug'
   gem 'pry-rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
