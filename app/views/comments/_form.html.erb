@@ -5,5 +5,6 @@
     <%= f.text_field :body %>
     <%= f.submit %>
   <% end %>
-  
+<%= form_for [@post, Comment.new], remote: true do |f| %>
+<% end %>
 <% end %>

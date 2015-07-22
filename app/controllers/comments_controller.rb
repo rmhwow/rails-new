@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
-  
+
+  respond_to :html, :js
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
     @comment.post = @post
+    @new_comment = Comment.new
 
     authorize @comment
 
@@ -12,7 +15,10 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "Comment failed to save."
     end
-    redirect_to [@post.topic,@post]
+
+    respond_with(@comment) do |format|
+      format.html { redirect_to [@post.topic, @post] }
+    end
   end
 
   def destroy
@@ -26,10 +32,9 @@ class CommentsController < ApplicationController
       flash[:error] = "Comment couldn't be deleted. Try again."
     end
 
-    respond_to do |format|
-       format.html
-       format.js
-     end
+    respond_with(@comment) do |format|
+      format.html{ redirect_to [@post.topic, @post] }
+    end
   end
 
   private
