@@ -9,7 +9,7 @@
   <div class="col-md-8"> 
   <%= render partial: 'votes/voter', locals: { post: @post } %>
   <h1>
-<%= image_tag(@post.image.thumb.url) if @post.image? %>
+<%= image_tag(@post.image.url) if @post.image? %>
     <%= @post.markdown_title %>
   </h1>
      <small>
